@@ -14,7 +14,23 @@
  * limitations under the License
  */
 
-package android.systemui.cts;
+package android.backup.app;
 
-public class LightBarThemeActivity extends LightBarBaseActivity {
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+
+/*
+ * Broadcast receiver pinged in order to make sure the app progressed from
+ * the stopped state after being installed, so that backup can be done.
+ */
+public class WakeUpReceiver extends BroadcastReceiver {
+
+    private static final String TAG = "WakeUpReceiver";
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        Log.d(TAG, "android.backup.app should no longer be in the stopped state");
+    }
 }

@@ -16,11 +16,11 @@
 
 package com.android.compatibility.common.util;
 
-import android.content.pm.PackageManager;
-import android.support.test.InstrumentationRegistry;
+import com.android.tradefed.device.DeviceNotAvailableException;
+import com.android.tradefed.device.ITestDevice;
 
 /**
- * Device-side utility class for detecting system features
+ * Host-side utility class for detecting system features
  */
 public class FeatureUtil {
 
@@ -28,38 +28,28 @@ public class FeatureUtil {
     public static final String TV_FEATURE = "android.hardware.type.television";
     public static final String WATCH_FEATURE = "android.hardware.type.watch";
 
-
     /** Returns true if the device has a given system feature */
-    public static boolean hasSystemFeature(String feature) {
-        return getPackageManager().hasSystemFeature(feature);
-    }
-
-    /** Returns true if the device lacks a given system feature */
-    public static boolean lacksSystemFeature(String feature) {
-        return !hasSystemFeature(feature);
+    public static boolean hasSystemFeature(ITestDevice device, String feature)
+            throws DeviceNotAvailableException {
+        return device.hasFeature(feature);
     }
 
     /** Returns true if the device has any feature in a given collection of system features */
-    public static boolean hasAnySystemFeature(String... features) {
-        PackageManager pm = getPackageManager();
+    public static boolean hasAnySystemFeature(ITestDevice device, String... features)
+            throws DeviceNotAvailableException {
         for (String feature : features) {
-            if (pm.hasSystemFeature(feature)) {
+            if (device.hasFeature(feature)) {
                 return true;
             }
         }
         return false;
     }
 
-    /** Returns true if the device lacks any feature in a given collection of system features */
-    public static boolean lacksAnySystemFeature(String... features) {
-        return !hasAllSystemFeatures(features);
-    }
-
     /** Returns true if the device has all features in a given collection of system features */
-    public static boolean hasAllSystemFeatures(String... features) {
-        PackageManager pm = getPackageManager();
+    public static boolean hasAllSystemFeatures(ITestDevice device, String... features)
+            throws DeviceNotAvailableException {
         for (String feature : features) {
-            if (!pm.hasSystemFeature(feature)) {
+            if (!device.hasFeature(feature)) {
                 return false;
             }
         }
@@ -67,21 +57,14 @@ public class FeatureUtil {
     }
 
     /** Returns true if the device has feature TV_FEATURE or feature LEANBACK_FEATURE */
-    public static boolean isTV() {
-        return hasAnySystemFeature(TV_FEATURE, LEANBACK_FEATURE);
+    public static boolean isTV(ITestDevice device) throws DeviceNotAvailableException {
+        return hasAnySystemFeature(device, TV_FEATURE, LEANBACK_FEATURE);
     }
 
     /** Returns true if the device has feature WATCH_FEATURE */
-    public static boolean isWatch() {
-        return hasSystemFeature(WATCH_FEATURE);
+    public static boolean isWatch(ITestDevice device) throws DeviceNotAvailableException {
+        return hasSystemFeature(device, WATCH_FEATURE);
     }
 
-    /** Returns true if the device lacks all features in a given collection of system features */
-    public static boolean lacksAllSystemFeatures(String... features) {
-        return !hasAnySystemFeature(features);
-    }
 
-    private static PackageManager getPackageManager() {
-        return InstrumentationRegistry.getInstrumentation().getTargetContext().getPackageManager();
-    }
 }
