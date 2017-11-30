@@ -12,28 +12,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := $(call my-dir)
-
-# cts-api-signature-test java library
-# ===================================
+LOCAL_PATH:= $(call my-dir)
 
 include $(CLEAR_VARS)
 
-# don't include this package in any target
+LOCAL_PACKAGE_NAME := CtsCrossProfileAppsTests
+
 LOCAL_MODULE_TAGS := optional
+
+LOCAL_MODULE_PATH := $(TARGET_OUT_DATA_APPS)
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
-LOCAL_MODULE := cts-api-signature-test
+LOCAL_JAVA_LIBRARIES := legacy-android-test cts-junit
+
+LOCAL_STATIC_JAVA_LIBRARIES = \
+	android-support-v4 \
+	ctstestrunner \
+	android-support-test \
+	legacy-android-test \
+	truth-prebuilt \
+	ub-uiautomator
 
 LOCAL_SDK_VERSION := current
 
-LOCAL_STATIC_JAVA_LIBRARIES := \
-    cts-signature-common \
-    repackaged.android.test.base \
-    repackaged.android.test.runner \
-    repackaged.android.test.mock \
+# tag this module as a cts test artifact
+LOCAL_COMPATIBILITY_SUITE := cts vts general-tests
 
-include $(BUILD_STATIC_JAVA_LIBRARY)
-
-include $(call all-makefiles-under,$(LOCAL_PATH))
+include $(BUILD_CTS_PACKAGE)
