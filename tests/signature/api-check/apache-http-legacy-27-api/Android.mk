@@ -1,4 +1,4 @@
-# Copyright 2016 The Android Open Source Project
+# Copyright (C) 2018 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,24 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH:= $(call my-dir)
+LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := libctsdeviceinfo
+LOCAL_PACKAGE_NAME := CtsApacheHttpLegacy27ApiSignatureTestCases
 
-LOCAL_MODULE_TAGS := optional
+LOCAL_SIGNATURE_API_FILES := \
+    current.api \
+    apache-http-legacy-minus-current.api \
 
-LOCAL_SRC_FILES := \
-	CtsDeviceInfoJniOnLoad.cpp \
-	com_android_cts_deviceinfo_VulkanDeviceInfo.cpp
-
-LOCAL_STATIC_LIBRARIES := libvkjson_ndk
-LOCAL_SHARED_LIBRARIES := libvulkan liblog libdl
-LOCAL_NDK_STL_VARIANT := c++_static
-
-LOCAL_CFLAGS := -Wall -Werror
-
-LOCAL_SDK_VERSION := current
-
-include $(BUILD_SHARED_LIBRARY)
+include $(LOCAL_PATH)/../build_signature_apk.mk
