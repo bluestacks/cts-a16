@@ -1,4 +1,4 @@
-# Copyright (C) 2012 The Android Open Source Project
+# Copyright (C) 2018 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,25 +11,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
+
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-
-LOCAL_MODULE    := libctsmediastress_jni
-
+LOCAL_MODULE := libcts_dexchecker
 LOCAL_MODULE_TAGS := optional
-
-LOCAL_SRC_FILES := native-media-jni.cpp
-
+LOCAL_SRC_FILES := dex-checker.cpp
+LOCAL_CFLAGS := -Wall -Werror
 LOCAL_C_INCLUDES := $(JNI_H_INCLUDE)
-
-LOCAL_C_INCLUDES += $(call include-path-for, wilhelm)
-
-LOCAL_SHARED_LIBRARIES := libandroid libnativehelper_compat_libc++ liblog libOpenMAXAL
-LOCAL_NDK_STL_VARIANT := none
 LOCAL_SDK_VERSION := current
-
-LOCAL_CFLAGS := -Wall -Werror -Wno-unused-parameter -Wno-unused-variable
-
+LOCAL_NDK_STL_VARIANT := c++_static
 include $(BUILD_SHARED_LIBRARY)
