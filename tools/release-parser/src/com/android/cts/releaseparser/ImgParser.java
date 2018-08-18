@@ -19,14 +19,22 @@ package com.android.cts.releaseparser;
 import com.android.cts.releaseparser.ReleaseProto.*;
 
 import java.io.File;
+import java.util.logging.Logger;
 
-public class OdexParser extends OatParser {
-    public OdexParser(File file) {
+public class ImgParser extends FileParser {
+
+    public ImgParser(File file) {
         super(file);
     }
 
     @Override
     public Entry.EntryType getType() {
-        return Entry.EntryType.ODEX;
+        return Entry.EntryType.IMG;
+    }
+
+    // ToDo: to parse image file whever there is a valid use csae
+
+    private static Logger getLogger() {
+        return Logger.getLogger(ImgParser.class.getSimpleName());
     }
 }

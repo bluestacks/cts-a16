@@ -11,22 +11,25 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License.
+ * limitations under the License
  */
 
 package com.android.cts.releaseparser;
 
-import com.android.cts.releaseparser.ReleaseProto.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
 
-import java.io.File;
-
-public class OdexParser extends OatParser {
-    public OdexParser(File file) {
-        super(file);
-    }
-
-    @Override
-    public Entry.EntryType getType() {
-        return Entry.EntryType.ODEX;
-    }
+/**
+ * A test suite for all util unit tests.
+ *
+ * <p>All tests listed here should be self-contained, and do not require any external dependencies.
+ */
+@RunWith(Suite.class)
+@SuiteClasses({
+    ApkParserTest.class,
+    SoParserTest.class,
+})
+public class UnitTests {
+    // empty on purpose
 }
