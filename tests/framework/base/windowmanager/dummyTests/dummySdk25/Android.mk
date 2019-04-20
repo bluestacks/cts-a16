@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2017 The Android Open Source Project
+# Copyright (C) 2019 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,16 +19,15 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE_TAGS := tests optional
 
-LOCAL_PACKAGE_NAME := CtsWindowManagerSdk25TestCases
+# TODO(b/129909356): Remove this once CtsActivityManagerDeviceSdk25TestCases is renamed to
+# CtsWindowManagerSdk25TestCases
+LOCAL_PACKAGE_NAME := CtsActivityManagerDeviceSdk25TestCases
 
-LOCAL_SRC_FILES := $(call all-java-files-under, src) \
-    ../src/android/server/wm/AspectRatioTestsBase.java
+LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
 LOCAL_SDK_VERSION := 25
 
-LOCAL_STATIC_JAVA_LIBRARIES := \
-    androidx.test.rules \
-    cts-wm-util
+LOCAL_STATIC_JAVA_LIBRARIES := androidx.test.rules
 
 LOCAL_COMPATIBILITY_SUITE := cts vts general-tests
 

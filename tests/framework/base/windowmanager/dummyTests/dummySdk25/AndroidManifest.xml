@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
- * Copyright (C) 2017 The Android Open Source Project
+ * Copyright (C) 2019 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,21 +16,18 @@
  -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="android.server.wm.cts.testsdk25">
+    package="android.server.wm.cts.dummy25">
 
     <uses-sdk android:targetSdkVersion="25" />
 
-    <application android:label="CtsWindowManagerSdk25TestCases">
+    <!-- TODO(b/129909356): Remove this once CtsActivityManagerDeviceSdk25TestCases is renamed to
+         CtsWindowManagerSdk25TestCases -->
+    <application android:label="CtsActivityManagerDeviceSdk25TestCases">
         <uses-library android:name="android.test.runner" />
-
-        <activity
-            android:name="android.server.wm.AspectRatioSdk25Tests$Sdk25MaxAspectRatioActivity"
-            android:label="Sdk25MaxAspectRatioActivity"
-            android:resizeableActivity="false" />
     </application>
 
     <instrumentation
         android:name="androidx.test.runner.AndroidJUnitRunner"
-        android:targetPackage="android.server.wm.cts.testsdk25" />
+        android:targetPackage="android.server.wm.cts.dummy25" />
 
 </manifest>
