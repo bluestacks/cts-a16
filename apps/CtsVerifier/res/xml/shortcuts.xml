@@ -14,11 +14,10 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
-    <share-target android:targetClass="android.app.stubs.SendBubbleActivity">
+    <share-target android:targetClass="com.android.cts.verifier.notifications.BubbleActivity">
         <data android:mimeType="text/plain" />
         <data android:mimeType="image/*" />
-        <category android:name="android.app.stubs.SHARE_SHORTCUT_CATEGORY" />
+        <category android:name="com.android.cts.verifier.notifications.SHORTCUT_CATEGORY" />
     </share-target>
 </shortcuts>
