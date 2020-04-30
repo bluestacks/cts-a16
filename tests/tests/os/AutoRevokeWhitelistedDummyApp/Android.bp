@@ -1,3 +1,4 @@
+//
 // Copyright (C) 2020 The Android Open Source Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,32 +12,19 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
 
-cc_test {
-    name: "ctsgraphicsgpuprofilinginit",
-    srcs: [
-        "android_graphics_cts_GpuProfilingData.cpp",
+android_test_helper_app {
+    name: "CtsAutoRevokeWhitelistedDummyApp",
+    defaults: ["cts_defaults"],
+    sdk_version: "test_current",
+    // Tag this module as a cts test artifact
+    test_suites: [
+        "cts",
+        "vts",
+        "vts10",
+        "mts",
+        "general-tests",
     ],
-    test_suites: ["cts"],
-    compile_multilib: "both",
-    multilib: {
-        lib32: {
-            suffix: "32",
-        },
-        lib64: {
-            suffix: "64",
-        },
-    },
-    cflags: [
-        "-Wall",
-        "-Werror",
-    ],
-    shared_libs: [
-        "libdl",
-        "libandroid",
-        "libvulkan",
-        "liblog",
-    ],
-    stl: "c++_static",
-    sdk_version: "current",
+    srcs: ["src/**/*.java", "src/**/*.kt"],
 }
