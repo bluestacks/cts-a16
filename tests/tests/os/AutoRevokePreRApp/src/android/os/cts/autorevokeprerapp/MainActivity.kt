@@ -14,15 +14,16 @@
  * limitations under the License.
  */
 
-package android.app.appops.cts.appthatusesappops
+package android.os.cts.autorevokeprerapp
 
 import android.app.Activity
 import android.os.Bundle
 
-class AutoClosingActivity : Activity() {
+class MainActivity : Activity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        finish()
+        requestPermissions(arrayOf("android.permission.READ_CALENDAR"), 0)
     }
 }
