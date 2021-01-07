@@ -1,1 +1,2 @@
 /hostsidetests/largeapk/app/res/raw/zerofile.png filter=lfs diff=lfs merge=lfs -text
+/tests/MediaProviderTranscode/res/raw/testVideo_HEVC_long.mp4 filter=lfs diff=lfs merge=lfs -text
