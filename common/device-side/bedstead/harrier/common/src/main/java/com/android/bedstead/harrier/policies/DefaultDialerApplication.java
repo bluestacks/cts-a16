@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 The Android Open Source Project
+ * Copyright (C) 2023 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,13 +24,13 @@ import static com.android.bedstead.harrier.annotations.enterprise.EnterprisePoli
 import com.android.bedstead.harrier.annotations.enterprise.EnterprisePolicy;
 
 /**
- * Policy for set default SMS application test.
+ * Policy for set default Dialer application test.
  *
- * <p>This is used by {@code DevicePolicyManager#setDefaultSmsApplication(ComponentName, String)}.
+ * <p>This is used by {@code DevicePolicyManager#setDefaultDialerApplication(String)}.
  */
 @EnterprisePolicy(dpc = APPLIED_BY_DEVICE_OWNER
         | APPLIED_BY_ORGANIZATION_OWNED_PROFILE_OWNER_PROFILE
         | APPLIES_TO_OWN_USER
         | CANNOT_BE_APPLIED_BY_ROLE_HOLDER)
-public final class DefaultSmsApplication {
+public final class DefaultDialerApplication {
 }
